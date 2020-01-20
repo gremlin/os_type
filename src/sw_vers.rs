@@ -24,12 +24,14 @@ fn extract_from_regex(stdout: &String, regex: Regex) -> Option<String> {
     }
 }
 
+/* rmv
 pub fn is_os_x() -> bool {
     match Command::new("sw_vers").output() {
         Ok(output) => output.status.success(),
         Err(_) => false
     }
 }
+*/
 
 pub fn retrieve() -> Option<SwVers> {
     let output = match Command::new("sw_vers").output() {

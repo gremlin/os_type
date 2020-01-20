@@ -57,7 +57,7 @@ pub fn parse(file: String) -> OSRelease {
 }
 
 mod tests {
-    use super::*;
+    // rmv use super::*;
 
     #[test]
     fn parse_ubuntu_18_04_os_release() {
