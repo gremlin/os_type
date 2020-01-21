@@ -21,7 +21,8 @@ pub enum OSType {
     Arch,
     Manjaro,
     CentOS,
-    OpenSUSE
+    OpenSUSE,
+    Windows,
 }
 
 /// Holds information about Operating System type and its version
@@ -188,6 +189,17 @@ pub fn current_platform() -> OSInformation {
     }
     else if utils::file_exists("/etc/redhat-release") || utils::file_exists("/etc/centos-release") {
         rhel_release()
+    }
+    else if let Some(v) = windows_ver::retrieve() {
+        if let Some(v) = v.version {
+            OSInformation {
+                os_type: OSType::Windows,
+                version: v,
+            }
+        }
+        else {
+            unknown_os()
+        }
     }
     else {
         unknown_os()
